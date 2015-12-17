@@ -1,0 +1,217 @@
+/*BODY
+{
+    BACKGROUND-IMAGE: url(../images/fundo.jpg);
+    MARGIN: 0px;
+    BACKGROUND-ATTACHMENT: fixed;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 8pt
+}*/
+.BotaoOff
+{
+    BORDER-BOTTOM: #7493c5 1px solid;
+    BORDER-LEFT: #7493c5 1px solid;
+    BACKGROUND-COLOR: #00559a;
+    WIDTH: 100px;
+    FONT-FAMILY: Arial;
+    HEIGHT: 20px;
+    COLOR: white;
+    FONT-SIZE: 8pt;
+    BORDER-TOP: #7493c5 1px solid;
+    FONT-WEIGHT: bold;
+    BORDER-RIGHT: #7493c5 1px solid
+}
+.Cabecalho
+{
+    TEXT-ALIGN: center;
+    BACKGROUND-COLOR: #00559a;
+    FONT-FAMILY: Arial;
+    COLOR: white;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bold
+}
+.BotaoOn
+{
+    BORDER-BOTTOM: #00559a 1px solid;
+    BORDER-LEFT: #00559a 1px solid;
+    BACKGROUND-COLOR: #7493c5;
+    WIDTH: 100px;
+    FONT-FAMILY: Arial;
+    HEIGHT: 20px;
+    COLOR: yellow;
+    FONT-SIZE: 8pt;
+    BORDER-TOP: #00559a 1px solid;
+    FONT-WEIGHT: bold;
+    BORDER-RIGHT: #00559a 1px solid
+}
+.Impar
+{
+    BACKGROUND-COLOR: white;
+    FONT-FAMILY: Arial;
+    COLOR: #00559a;
+    FONT-SIZE: 8pt
+}
+.Par
+{
+    BACKGROUND-COLOR: #b9cadd;
+    FONT-FAMILY: Arial;
+    COLOR: #00559a;
+    FONT-SIZE: 8pt
+}
+.TextBox
+{
+    BORDER-BOTTOM: silver 1px solid;
+    BORDER-LEFT: silver 1px solid;
+    FONT-FAMILY: Arial;
+    COLOR: #00559a;
+    FONT-SIZE: 8pt;
+    BORDER-TOP: silver 1px solid;
+    BORDER-RIGHT: silver 1px solid
+}
+.TituloPagina
+{
+    FONT-STYLE: italic;
+    COLOR: #00559a;
+    FONT-SIZE: 14pt;
+    FONT-WEIGHT: bold
+}
+.top
+{
+    BACKGROUND-IMAGE: url(../images/stefaninigrd2.png);
+    MARGIN: 0px;
+    BACKGROUND-REPEAT: no-repeat;
+    FONT-FAMILY: Arial;
+    BACKGROUND-POSITION: left top
+}
+.MenuBackground
+{
+    FONT-FAMILY: Arial
+}
+.MenuGroup
+{
+    BORDER-BOTTOM: gray 1px solid;
+    FILTER: progid:DXImageTransform.Microsoft.Shadow(color='dimgray', Direction=135, Strength=3);
+    BORDER-LEFT: gray 1px solid;
+    BACKGROUND-COLOR: white;
+    FONT-FAMILY: Arial;
+    BORDER-TOP: gray 1px solid;
+    BORDER-RIGHT: gray 1px solid
+}
+.MenuItem
+{
+    PADDING-BOTTOM: 3px;
+    PADDING-LEFT: 15px;
+    PADDING-RIGHT: 10px;
+    FONT-FAMILY: Arial;
+    COLOR: #292929;
+    FONT-SIZE: 8pt;
+    CURSOR: default;
+    PADDING-TOP: 3px
+}
+.MenuItemOver
+{
+    PADDING-BOTTOM: 3px;
+    BACKGROUND-COLOR: lightgrey;
+    PADDING-LEFT: 15px;
+    PADDING-RIGHT: 10px;
+    FONT-FAMILY: Arial;
+    COLOR: black;
+    FONT-SIZE: 8pt;
+    CURSOR: default;
+    PADDING-TOP: 3px
+}
+.Menu
+{
+    BORDER-BOTTOM: silver 2px solid;
+    BACKGROUND-COLOR: #f0f0f0;
+    FONT-FAMILY: Arial;
+    HEIGHT: 23px;
+    COLOR: black;
+    FONT-SIZE: 8pt;
+    CURSOR: default;
+    FONT-WEIGHT: bold
+}
+.MenuOn
+{
+    BORDER-BOTTOM: silver 2px solid;
+    BACKGROUND-COLOR: gold;
+    FONT-FAMILY: Arial;
+    HEIGHT: 23px;
+    COLOR: black;
+    FONT-SIZE: 8pt;
+    CURSOR: default;
+    FONT-WEIGHT: bold
+}
+.SubMenu
+{
+    BORDER-BOTTOM: silver 2px solid;
+    BORDER-LEFT: silver 2px solid;
+    BACKGROUND-COLOR: white;
+    FONT-FAMILY: Arial;
+    HEIGHT: 23px;
+    COLOR: black;
+    FONT-SIZE: 8pt;
+    BORDER-TOP: silver 2px;
+    CURSOR: default;
+    FONT-WEIGHT: bold;
+    BORDER-RIGHT: silver 2px solid
+}
+.SubMenuOn
+{
+    BORDER-BOTTOM: silver 2px solid;
+    BORDER-LEFT: silver 2px solid;
+    BACKGROUND-COLOR: gold;
+    FONT-FAMILY: Arial;
+    HEIGHT: 23px;
+    COLOR: black;
+    FONT-SIZE: 8pt;
+    BORDER-TOP: silver 2px;
+    CURSOR: default;
+    FONT-WEIGHT: bold;
+    BORDER-RIGHT: silver 2px solid
+}
+.MenuTitulo
+{
+    BORDER-BOTTOM: silver 1px;
+    BACKGROUND-COLOR: #425fa2;
+    FONT-FAMILY: Arial;
+    COLOR: white;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold
+}
+.TopMenuGroup
+{
+    BACKGROUND-IMAGE: url(../images/topGroupBg1.gif);
+    BORDER-BOTTOM: gray 1px;
+    FILTER: progid:DXImageTransform.Microsoft.Shadow(color='dimgray', Direction=135, Strength=3);
+    BORDER-LEFT: gray 1px;
+    BACKGROUND-REPEAT: repeat;
+    FONT-FAMILY: Arial;
+    BORDER-TOP: gray 1px;
+    BORDER-RIGHT: gray 1px
+}
+.font
+{
+    FONT-FAMILY: Arial;
+    COLOR: #00559a;
+    FONT-SIZE: 8pt
+}
+.fontVermelha
+{
+    FONT-FAMILY: Arial;
+    COLOR: red;
+    FONT-SIZE: 8pt
+}
+.tr1
+{
+    BACKGROUND-COLOR: #b9cadd;
+    FONT-FAMILY: Arial;
+    COLOR: #00559a;
+    FONT-SIZE: 8pt
+}
+.tr0
+{
+    BACKGROUND-COLOR: white;
+    FONT-FAMILY: Arial;
+    COLOR: #00559a;
+    FONT-SIZE: 8pt
+}

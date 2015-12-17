@@ -1,0 +1,536 @@
+<!-- #include file = "../includes/Function.asp" -->
+<!-- #include file = "../includes/BD.asp" -->
+<!-- S#include file = "../includes/GetConnection.asp" -->
+<!-- #include file = "../includes/Request.asp" -->
+<!-- #include file = "../includes/Validade.asp" -->
+<!-- #include file = "../includes/ValidadeSession.asp" -->
+
+<%
+
+If	Not Session("sboo_fladministrador") = True Then
+	
+	Response.Redirect getBaseLink("/horas/horaslancamento.asp")
+	
+End If
+
+
+' Declaração de variáveis locais. ==============================================
+
+' Guarda a operação que será executa nesta tela.
+' Obs.: Seus valores podem ser A = Alteração, I = Inclusão, V = Visualização.
+Dim vstr_Operacao
+
+' Variável flag que indica se a página deve ser 
+' processada, apenas disponivel para as operações de
+' A e I.
+Dim vstr_Processar
+
+'Variável de controle e fluxo de acoes
+Dim vstr_Executar
+
+' Armazena o código de referência do registro que será alterado, Inclusso
+' ou visualizado.
+Dim vint_IdFuncao
+
+' Declaração de variáveis utilizadas para armazenar os
+' valores dos campos da tela.
+Dim vstr_DsFuncao
+
+' para está página.
+vstr_Operacao		= Request.Form("pstr_Operacao")
+vstr_Processar		= Request.Form("hdnProcessar")
+vstr_Executar		= Request.Form("hdnExecutar")
+
+' Verifica se o parametro que defini o tipo
+' de operação a ser executado na página é
+' igual a branco(vazio).
+If Trim(vstr_Operacao) = "" Then
+	
+	' ... neste caso a operação
+	' padrão de a de visualização apenas
+	' do registro.
+	vstr_Operacao = "V"
+End If
+
+
+' Analizando a variável que indica o fluxo de 
+' operação desta página.
+If vstr_Executar = "DESATIVAR" Then
+	
+	
+	' -->> Operação de Exclusão de Registros.
+		
+		
+	' ... operação de exclusão de registros.
+		
+		
+	' Declaração de variáveis auxiliares que
+	' auxiliarão na exclusão dos registros selecionados.
+	Dim vstr_DesativarIdRegistro
+	Dim vobj_commandDesativar
+		
+		
+		
+		
+	' Conseguindo todos os registros selecionados para
+	' a exclusão do banco de dados.
+	vstr_DesativarIdRegistro = Request.Form("hdnIdRegistro")
+		
+		
+	' ---------------------------------------------------------------------
+	' Exclusão de Registros do banco de dados.
+	' ---------------------------------------------------------------------
+	Set vobj_commandDesativar = Server.CreateObject("ADODB.Command")
+	Set vobj_commandDesativar.ActiveConnection = vobj_conexao
+			
+			
+	vobj_commandDesativar.CommandType					= adCmdStoredProc
+	vobj_commandDesativar.CommandText					= "excluiFuncao"
+	vobj_commandDesativar.CommandTimeout					= 0	
+		
+			
+			
+	' Iguinorando os erros que ocorrem na exclusão
+	' do registro do banco de dados.
+	On Error Resume Next
+		
+	' Passando o código do Registro a ser
+	' excluido do banco de dados.
+	vobj_commandDesativar.Parameters.Append vobj_commandDesativar.CreateParameter("param1",adChar, adParamInput, 10, vstr_DesativarIdRegistro)
+		
+		
+	' Chamando comando para excluir o registro
+	Call vobj_commandDesativar.Execute
+			
+	' Analizando os erros que podem ter ocorrido
+	' na exclusão do registros selecionados pelo
+	' usuário.
+	Select Case Err.number 
+				
+		' Verificando se o erro de integridade referencial
+		' ocorreu na exclusão do registro acima.
+		Case -2147217900
+					
+			%><script>alert("Atenção!!!\n\nO(s) registro(s) que não foi(ram) excluido(s) possui(em) dados relacionados. Exclua os dados relacionados para poder excluir este(s) registro(s).");</script><%
+					
+	End Select
+			
+			
+			
+	' Habilitando a mensagem de erro quando um
+	' erro acontecer.
+	On Error Goto 0
+			
+			
+			
+	' Limpa a variável utilizada para excluir os
+	' registros do banco de dados.
+	Set vobj_commandDesativar = Nothing
+		
+	Response.Redirect("funcaolistagem.asp")
+	
+End If
+
+
+' Analizando a variável que indica o fluxo de 
+' operação desta página.
+If vstr_Executar = "ATIVAR" Then
+	
+	
+	' -->> Operação de Exclusão de Registros.
+		
+		
+	' ... operação de exclusão de registros.
+		
+		
+	' Declaração de variáveis auxiliares que
+	' auxiliarão na exclusão dos registros selecionados.
+	Dim vstr_AtivarIdRegistro
+	Dim vobj_commandAtivar
+		
+		
+		
+		
+	' Conseguindo todos os registros selecionados para
+	' a exclusão do banco de dados.
+	vstr_AtivarIdRegistro = Request.Form("hdnIdRegistro")
+		
+		
+	' ---------------------------------------------------------------------
+	' Exclusão de Registros do banco de dados.
+	' ---------------------------------------------------------------------
+	Set vobj_commandAtivar = Server.CreateObject("ADODB.Command")
+	Set vobj_commandAtivar.ActiveConnection = vobj_conexao
+			
+			
+	vobj_commandAtivar.CommandType					= adCmdStoredProc
+	vobj_commandAtivar.CommandText					= "ativarFuncao"
+	vobj_commandAtivar.CommandTimeout					= 0	
+		
+			
+			
+	' Iguinorando os erros que ocorrem na exclusão
+	' do registro do banco de dados.
+	On Error Resume Next
+		
+	' Passando o código do Registro a ser
+	' excluido do banco de dados.
+	vobj_commandAtivar.Parameters.Append vobj_commandAtivar.CreateParameter("param1",adChar, adParamInput, 10, vstr_AtivarIdRegistro)
+	
+	
+	' Chamando comando para excluir o registro
+	Call vobj_commandAtivar.Execute
+			
+	' Analizando os erros que podem ter ocorrido
+	' na exclusão do registros selecionados pelo
+	' usuário.
+	Select Case Err.number 
+				
+		' Verificando se o erro de integridade referencial
+		' ocorreu na exclusão do registro acima.
+		Case -2147217900
+					
+			%><script>alert("Atenção!!!\n\nO(s) registro(s) que não foi(ram) excluido(s) possui(em) dados relacionados. Exclua os dados relacionados para poder excluir este(s) registro(s).");</script><%
+					
+	End Select
+			
+			
+			
+	' Habilitando a mensagem de erro quando um
+	' erro acontecer.
+	On Error Goto 0
+			
+			
+			
+	' Limpa a variável utilizada para excluir os
+	' registros do banco de dados.
+	Set vobj_commandAtivar = Nothing
+		
+	Response.Redirect("funcaolistagem.asp")
+	
+End If
+
+' *******************************************************
+' INICIO DA ROTINA QUE CONSEGUE OS DADOS DO REGISTRO
+' *******************************************************
+
+' Veririfa se a operação a ser executada nesta página é a 
+' operação de Alteração ou Visualização e se a página não
+' foi processada ainda.
+If (vstr_Operacao = "A" or vstr_Operacao = "V") And vstr_Processar <> "S" Then
+	
+	
+	' ... neste caso deve ser solicitado o código do registro
+	' e encontrar suas informações no banco de dados para exibir para
+	' as informações do registro na tela.
+	' Conseguindo o código do registro.
+	vint_IdFuncao				= Request.Form("hdnIdRegistro")
+	
+	
+	' Declaração de variáveis auxiliares
+	' para obter as informações do registro.
+	Dim vobj_rsRegistro
+	Dim vobj_commandRegistro
+	
+	
+	
+	' ---------------------------------------------------------------------
+	' Selecionando os dados do registro.
+	' ---------------------------------------------------------------------
+	Set vobj_commandRegistro = Server.CreateObject("ADODB.Command")
+	Set vobj_commandRegistro.ActiveConnection = vobj_conexao
+							
+							
+	vobj_commandRegistro.CommandType					= adCmdStoredProc
+	vobj_commandRegistro.CommandText					= "consultaFuncao"
+	
+	vobj_commandRegistro.Parameters.Append vobj_commandRegistro.CreateParameter("param1", adInteger, adParamInput, , vint_IdFuncao)
+	' ---------------------------------------------------------------------
+	
+	
+	' Cria o objeto recordset com as informações do registro.	
+	Set vobj_rsRegistro = vobj_commandRegistro.Execute
+	
+	
+	If Not vobj_rsRegistro.EOF Then
+		
+		' Conseguindo os dados do registro.
+		vint_IdFuncao		= vobj_rsRegistro("ID_FUNCAO")
+		vstr_DsFuncao		= vobj_rsRegistro("DS_FUNCAO")
+		
+	End If
+	
+	vobj_rsRegistro.Close
+	Set vobj_rsRegistro = Nothing
+	Set vobj_commandRegistro = Nothing
+Else
+	
+	
+	' Verifica se a operação a ser executada nesta página é
+	' a operação de inclusão e verifica se a página não foi
+	' processada ainda.
+	If vstr_Operacao = "I" And vstr_Processar <> "S" Then
+		
+		' Neste caso todas as variáveis devem ser vazias
+		' para o usuário poder preencher seu novo cadastro
+		' do registro.
+		
+		vint_IdFuncao		= Empty
+		vstr_DsFuncao		= Empty
+		
+	Else
+		
+		' ... está opção acontecerá quando o usuário processar
+		' a página, neste caso todas os dados da tela serão
+		' submetidos e devem ser pegos neste lugar.
+		
+		vint_IdFuncao					= Request.Form("hdnIdRegistro")
+		vstr_DsFuncao					= Request.Form("txtDsFuncao")
+		
+	End If
+End If
+' *******************************************************
+' FINAL DA ROTINA QUE CONSEGUE OS DADOS DO REGISTRO
+' *******************************************************
+
+
+
+' *******************************************************
+' INICIO DA ROTINA QUE FAZ O PROCESSAMENTO DOS DADOS
+' DO REGISTRO.
+' *******************************************************
+
+' Verifica se a variável flag está setada como S, 
+' isto indica que um processamento deve ser feito.
+If vstr_Processar = "S" Then
+	
+	
+	' Declaração de variáveis auxiliares
+	' para fazer o processamento da página.
+	Dim vobj_commandProc
+	
+	
+	' Analiza a operação a ser executada na página
+	' para descobrir o processamento que deve ser feito.
+	Select Case vstr_Operacao
+		
+		
+		Case "A"						' Operação de alteração do registro.
+			
+			' ... processamento de alteração do registro.
+			
+			
+			' Verificando se o formulário foi
+			' devidamente válidado pelo sistema.
+			If ValidarForm = True Then
+				
+				
+				' ---------------------------------------------------------------------
+				' Alterando os dados do registro no banco de dados.
+				' ---------------------------------------------------------------------
+				Set vobj_commandProc = Server.CreateObject("ADODB.Command")
+				Set vobj_commandProc.ActiveConnection = vobj_conexao
+				
+				
+				vobj_commandProc.CommandType					= adCmdStoredProc
+				vobj_commandProc.CommandText					= "alteraFuncao"
+				
+				vobj_commandProc.Parameters.Append vobj_commandProc.CreateParameter("param1", adInteger, adParamInput, , vint_IdFuncao)
+				vobj_commandProc.Parameters.Append vobj_commandProc.CreateParameter("param2",adChar, adParamInput, 100, Trim(vstr_DsFuncao))
+				
+				Call vobj_commandProc.Execute
+				Set vobj_commandProc = Nothing
+				' ---------------------------------------------------------------------
+				
+				
+				' Redireciona para a página de listagem
+				' dos registros.
+				Response.Redirect("funcaolistagem.asp")
+			End If
+			
+			
+		Case "I"						' Operação de inclusão do registro.
+			
+			
+			' ... processamento de inclusão de registro.
+			
+			
+			' Verificando se o formulário foi
+			' devidamente válidado pelo sistema.
+			If ValidarForm = True Then
+				
+				' ---------------------------------------------------------------------
+				' Procedimento desenvolvimento para tratar a entrada de umas mesma
+				' area
+				' ---------------------------------------------------------------------
+				
+				' Declaração de variáveis auxiliares
+				' para obter as informações do registro.
+				Dim vobj_rsRegistroConsulta
+				Dim vobj_commandRegistroConsulta
+				
+				
+				' ---------------------------------------------------------------------
+				' Selecionando os dados do registro.
+				' ---------------------------------------------------------------------
+				Set vobj_commandRegistroConsulta = Server.CreateObject("ADODB.Command")
+				Set vobj_commandRegistroConsulta.ActiveConnection = vobj_conexao
+				
+				
+				vobj_commandRegistroConsulta.CommandType					= adCmdStoredProc
+				vobj_commandRegistroConsulta.CommandText					= "consultaFuncao"
+				
+				
+				vobj_commandRegistroConsulta.Parameters.Append vobj_commandRegistroConsulta.CreateParameter("param1", adInteger, adParamInput, , 0)
+				' ---------------------------------------------------------------------
+				
+				
+				' Cria o objeto recordset com as informações do registro.	
+				Set vobj_rsRegistroConsulta = vobj_commandRegistroConsulta.Execute
+				
+				'Verificando se ja ha registro no banco com mesma area
+				'Obs. É verificado soment campo Area, campo nome pode haver dois iguais.
+				If Not vobj_rsRegistroConsulta.EOF Then
+					
+					Call AddErro("Erro", "Há um registro com o mesmo nome da Função.")
+					
+				Else
+					
+					Dim vobj_rs
+					
+					' ---------------------------------------------------------------------
+					' Incluindo os dados do registro no banco de dados.
+					' ---------------------------------------------------------------------
+					Set vobj_commandProc = Server.CreateObject("ADODB.Command")
+					Set vobj_commandProc.ActiveConnection = vobj_conexao
+					
+					vobj_commandProc.CommandType					= adCmdStoredProc
+					vobj_commandProc.CommandText					= "incluiFuncao"
+					
+					vobj_commandProc.Parameters.Append vobj_commandProc.CreateParameter("param1",adChar, adParamInput, 100, Trim(vstr_DsFuncao))
+					
+					vobj_commandProc.Execute
+					
+					
+					Set vobj_commandProc = Nothing
+					
+					
+					' Altera a variável que indica o tipo de
+					' operação que é executada na página.
+					vstr_Operacao = "A"
+					
+					
+					' Redireciona para a página de listagem
+					' dos registros.
+					Response.Redirect("funcaolistagem.asp")
+					
+				End If
+				
+				vobj_rsRegistroConsulta.Close
+				Set vobj_rsRegistroConsulta = Nothing
+				Set vobj_commandRegistroConsulta = Nothing
+				
+				
+				
+			End If
+	End Select
+	
+End If
+' *******************************************************
+' FINAL DA ROTINA QUE FAZ O PROCESSAMENTO DOS DADOS
+' DO REGISTRO.
+' *******************************************************
+%>
+
+<!-- #include file = "../includes/LayoutBegin.asp" -->
+
+<script type="text/javascript" src="js/funcaomanutencao.js"></script>
+
+<table class="font" width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td height="20"></td>
+	</tr>
+	<tr>
+		<td style="VERTICAL-ALIGN: top">
+		<form name="thisForm" action="funcaomanutencao.asp" method="post">
+			
+			<input type="hidden" name="hdnProcessar" value="S">
+			<input type="hidden" name="pstr_Operacao" value="<%=vstr_Operacao%>">
+			<input type="hidden" name="hdnIdRegistro" value="<%=vint_IdFuncao%>">
+			
+			<i><b class="TituloPagina">Função</b></i>
+			<table border="0" class="font" cellpadding="0" cellspacing="0">
+				<tr>
+					<td><%=ExibirErros()%></td>
+				</tr>
+				<tr>
+					<td>
+					<fieldset style="LEFT: 0px; WIDTH: 595px; HEIGHT: 59px">
+						<legend>
+						   <b>Dados da Função</b>
+						</legend>
+						<table class="font" border="0" cellSpacing="1" cellPadding="1" name="tabPesquisa" id="tabPesquisa" width="100%" style="FILTER: alpha(opacity  =80)">
+							<tr>
+								<td>Descrição:&nbsp;</td>
+								<td>
+									<input name="txtDsFuncao" id="Descricao" class="TextBox" size="54" maxlength="100" Value="<%=vstr_DsFuncao%>">
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+					</td>
+				</tr>
+				<tr>
+					<td align="middle">
+					&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td align="middle">
+						<table ALIGN="center" BORDER="0" CELLSPACING="1" CELLPADDING="1">
+							<tr>
+								<td><input type="Submit" name="cmdSalvar" value="Salvar" class="BotaoOff" onmouseover="this.className='BotaoOn';" onmouseout="this.className='BotaoOff';" title="Gravar dados"></td>
+								<td><input type="button" name="cmdRetornar" value="Retornar" onClick="voltar();" class="BotaoOff" onmouseover="this.className='BotaoOn';" onmouseout="this.className='BotaoOff';" title="Retornar a tela anterior"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</form>
+		</td>
+	</tr>
+</TABLE>
+
+<!-- #include file = "../includes/LayoutEnd.asp" -->
+
+<%
+' =============================================================================================
+' DECLARAÇÃO DE FUNÇÕES E PROCEDIMENTOS LOCAIS DA PÁGINA.
+' =============================================================================================
+
+' Função desenvolvida para fazer o tratamento do
+' formulário de dados.
+Private Function ValidarForm()
+	
+	' Tratamento de campos do formulário. =============================
+	
+	If Trim(vstr_DsFuncao) = "" Then
+		Call AddErro("Descrição", "Favor, preencher o campo da Descrição.")
+	End If
+	
+	' Verifica se algum tipo de erro
+	' ocorreu na validação do formulário.
+	If TotalErros > 0 Then
+		
+		' Formulário inválido.
+		ValidarForm = False
+	Else
+		
+		' Formulário válido.
+		ValidarForm = True
+	End If
+End Function
+
+%>
+
+<!-- #include file = "../includes/CloseConnection.asp" -->

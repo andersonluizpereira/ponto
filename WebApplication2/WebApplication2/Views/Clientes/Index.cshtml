@@ -1,0 +1,64 @@
+﻿@model List<WebApplication2.Models.Clientes>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    
+        <table class="table">
+            <tr>
+                @{var item = @Model.ToList(); }
+                @Html.BeginForm("Alterar","Clientes",FormMethod.Get)
+                <th>
+                    @Html.DisplayNameFor(model => model.Checa)
+                </th>
+                <th></th>
+            </tr>
+
+            @*@foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Checa)
+                        </td>
+
+                        <td>
+                        </td>
+                    </tr>
+                }*@
+
+          
+
+            @for (int i = 0; i < item.Count(); i++)
+            {
+                <td>
+                    
+
+                </td>
+
+                <td>
+                    @Html.HiddenFor(model => item[i].id, "name=id")
+                    @Html.CheckBoxFor(model => item[i].Checa,"name=Checa")
+
+            </td>
+            }
+
+        </table>
+        <button type="submit">Vai</button>
+    
+</body>
+</html>
